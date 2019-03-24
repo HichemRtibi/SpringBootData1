@@ -39,8 +39,19 @@ public class ProductRestController {
         }
         else{
             logger.info("product Not found");
+            return product;
         }
-        return product;
+
+
+    }
+@RequestMapping(path = "{id}")
+    public boolean deleteProduct(@PathVariable("id") String id){
+        Product foundProduct=productRepository.findById(id).orElse(null);
+        if (foundProduct!=null){
+            productRepository.deleteById(id);
+            return true;
+        }
+        return false;
 
     }
 }
