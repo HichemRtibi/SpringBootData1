@@ -2,6 +2,8 @@ package com.hichem.rtibi;
 
 import com.hichem.rtibi.model.Product;
 import com.hichem.rtibi.repositories.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
+
+    private Logger logger=LoggerFactory.getLogger(DemoApplication.class);
     @Autowired
     private ProductRepository productRepository;
 
@@ -27,6 +31,10 @@ public class DemoApplication implements CommandLineRunner {
         productRepository.save(product);
         productRepository.save(product2);
         productRepository.save(product3);
+
+
+        Product productbYtYPE=productRepository.findByName("product2");
+        logger.info("product By Name :"+productbYtYPE.toString());
     }
 
 }
