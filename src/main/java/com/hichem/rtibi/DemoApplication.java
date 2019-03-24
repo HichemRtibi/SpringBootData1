@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -29,7 +30,7 @@ public class DemoApplication implements CommandLineRunner {
 
         Product product2 = new Product("product2", "CUSTOM", "category2", "description3", 12.00);
 
-        Product product3 = new Product("product1", "SPECEFIC", "category1", "description1", 10.00);
+        Product product3 = new Product("product3", "SPECEFIC", "category1", "description1", 10.00);
         productRepository.save(product);
         productRepository.save(product2);
         productRepository.save(product3);
@@ -38,10 +39,23 @@ public class DemoApplication implements CommandLineRunner {
        // Product productbYtYPE=productRepository.findByName("product2");
         //logger.info("product By Name :"+productbYtYPE.toString());
 
-        List<Product> products=productRepository.findByCategoryOrDescription("category1","description3");
+       /* List<Product> products=productRepository.findByCategoryOrDescription("category1","description3");
         for (Product product1:products) {
             logger.info("List product byCategory and description :"+product1.toString());
+        }*/
+
+       List<String> names=new ArrayList<>();
+       names.add("product1");
+       names.add("product2");
+        names.add("product3");
+
+       List<Product> products=productRepository.findByCategoryAndNameIn("category1",names);
+        for (Product product4: products) {
+            logger.info("product found with list Name: "+product4.toString());
+
         }
+
+
     }
 
 }
