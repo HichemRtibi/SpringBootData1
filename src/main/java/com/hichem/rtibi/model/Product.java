@@ -20,6 +20,14 @@ public class Product {
     public Product() {
     }
 
+    public Product(String name, String type, String category, String description, Double price) {
+        this.name = name;
+        this.type = type;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+    }
+
     public Product(String id, String name, String type, String category, String description, Double price) {
         this.id = id;
         this.name = name;
