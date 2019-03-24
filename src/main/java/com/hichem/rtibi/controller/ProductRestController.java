@@ -3,10 +3,8 @@ package com.hichem.rtibi.controller;
 import com.hichem.rtibi.model.Product;
 import com.hichem.rtibi.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -20,5 +18,9 @@ public class ProductRestController {
     public Product getProduct(@PathVariable("id") String id){
         return productRepository.findById(id).orElse(null);
 
+    }
+    @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Product SaveProduct(@RequestBody Product product){
+        return productRepository.save(product);
     }
 }
